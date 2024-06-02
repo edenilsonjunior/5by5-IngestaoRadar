@@ -1,34 +1,80 @@
-﻿namespace Models
+﻿using Newtonsoft.Json;
+
+namespace Models
 {
-    internal class Radar
+    public class Radar
     {
-        public string ConcessionaryCompany{ get; } // "concessionaria"
+        [JsonProperty("concessionaria")]
+        public string ConcessionaryCompany { get; set; }
 
-        public int YearPvnSvn{get;} // "ano_do_pnv_snv":
 
-        public string RadarType{get;} // "tipo_de_radar"
+        [JsonProperty("ano_do_pnv_snv")]
+        public int YearPvnSvn { get; set; }
 
-        public string Highway{get;} // "rodovia"
 
-        public string State{get;} // "uf"
+        [JsonProperty("tipo_de_radar")]
+        public string RadarType { get; set; }
 
-        public string KmM{get;} // "km_m"
 
-        public string City{get;} //  "municipio"
+        [JsonProperty("rodovia")]
+        public string Highway { get; set; }
 
-        public string LaneType{get;} // "tipo_pista"
 
-        public string Direction{get;} // "sentido"
+        [JsonProperty("uf")]
+        public string State { get; set; }
 
-        public string Situation{get;} // "situacao"
 
-        public List<DateOnly> InactivationDateList{get;} // "data_da_inativacao": []
+        [JsonProperty("km_m")]
+        public string KmM { get; set; }
 
-        public double Latitude{get;} // "latitude"
 
-        public double Longitude{get;} // "longitude"
+        [JsonProperty("municipio")]
+        public string City { get; set; }
 
-        public int LightSpeed{get;} // "velocidade_leve"
 
+        [JsonProperty("tipo_pista")]
+        public string LaneType { get; set; }
+
+
+        [JsonProperty("sentido")]
+        public string Direction { get; set; }
+
+
+        [JsonProperty("situacao")]
+        public string Situation { get; set; }
+
+
+        [JsonProperty("data_da_inativacao")]
+        public DateOnly[] InactivationDate { get; set; }
+
+
+        [JsonProperty("latitude")]
+        public double Latitude { get; set; }
+
+
+        [JsonProperty("longitude")]
+        public double Longitude { get; set; }
+
+
+        [JsonProperty("velocidade_leve")]
+        public int LightSpeed { get; set; }
+
+        public override string ToString()
+        {
+            return $"Concessionária....: {ConcessionaryCompany}\n" +
+                   $"Ano do PNV/SNV....: {YearPvnSvn}\n" +
+                   $"Tipo de radar.....: {RadarType}\n" +
+                   $"Rodovia...........: {Highway}\n" +
+                   $"UF................: {State}\n" +
+                   $"Km/m..............: {KmM}\n" +
+                   $"Município.........: {City}\n" +
+                   $"Tipo de pista.....: {LaneType}\n" +
+                   $"Sentido...........: {Direction}\n" +
+                   $"Situação..........: {Situation}\n" +
+                   $"Data da inativação: {string.Join(", ", InactivationDate)}\n" +
+                   $"Latitude..........: {Latitude}\n" +
+                   $"Longitude.........: {Longitude}\n" +
+                   $"Velocidade limite.: {LightSpeed}";
+        }
     }
 }
