@@ -1,11 +1,6 @@
 ﻿using Microsoft.Data.SqlClient;
 using Models;
-using System;
-using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Repositories
 {
@@ -13,11 +8,9 @@ namespace Repositories
     {
         public List<Radar> LoadData()
         {
-            string conn = "Data Source=127.0.0.1; Initial Catalog=DBRadar; User Id=sa; Password=SqlServer2019!; TrustServerCertificate=Yes";
+            var connection = SqlDatabase.GetInstance();
 
-            var connection = new SqlConnection(conn);
-
-            var cmd = new SqlCommand("SELECT * FROM Radar", connection);
+            var cmd = new SqlCommand(SqlDatabase.SELECT, connection);
 
             List<Radar> list = null;
             try

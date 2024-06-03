@@ -12,9 +12,6 @@ namespace Controllers
             _repository = repository;
         }
 
-        public List<Radar> LoadData()
-        {
-            return _repository.LoadData();
-        }
+        public List<Radar> LoadData() => _repository.LoadData();
     }
 }

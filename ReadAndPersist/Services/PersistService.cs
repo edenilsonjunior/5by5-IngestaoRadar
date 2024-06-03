@@ -1,5 +1,5 @@
-﻿using Models;
-using Repositories;
+﻿using Repositories;
+using Models;
 
 namespace Services
 {
@@ -12,9 +12,7 @@ namespace Services
             _repository = new();
         }
 
-        public List<Radar> LoadData() => _repository.LoadData();
-
-        public bool Insert(List<Radar> list) => _repository.Insert(list);
+        public bool InsertData(List<Radar> list) => _repository.InsertData(list);
 
     }
 }

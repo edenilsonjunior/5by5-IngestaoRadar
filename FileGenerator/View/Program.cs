@@ -1,6 +1,7 @@
 ﻿using Controllers;
 using Repositories;
 using Models;
+using System.Collections.Generic;
 
 namespace View
 {
@@ -8,29 +9,35 @@ namespace View
     {
         static void Main(string[] args)
         {
-            var list = new ReadController(new MongoRepository()).LoadData();
-
-            Console.WriteLine(new FileGeneratorController().GenerateCsv(list));
-            Console.WriteLine(new FileGeneratorController().GenerateJson(list));
-            Console.WriteLine(new FileGeneratorController().GenerateXml(list));
-
-
             bool exit = false;
-
-            var list = new List<Radar>();
+            var mongo = new MongoRepository();
+            var sql = new SqlRepository();
 
             while (!exit)
             {
-                switch (ChooseRecordType())
+                switch (ChooseDatabase())
                 {
                     case 1:
-                        GenerateCsv();
+                        GenerateCsv(mongo);
+                        Console.WriteLine("Pressione qualquer tecla para ir para o proximo relatorio...");
+                        Console.ReadLine();
+
+                        GenerateJson(mongo);
+                        Console.WriteLine("Pressione qualquer tecla para ir para o proximo relatorio...");
+                        Console.ReadLine();
+
+                        GenerateXml(mongo);
                         break;
                     case 2:
-                        GenerateJson();
-                        break;
-                    case 3:
-                        GenerateXml();
+                        GenerateCsv(sql);
+                        Console.WriteLine("Pressione qualquer tecla para ir para o proximo relatorio...");
+                        Console.ReadLine();
+
+                        GenerateJson(sql);
+                        Console.WriteLine("Pressione qualquer tecla para ir para o proximo relatorio...");
+                        Console.ReadLine();
+
+                        GenerateXml(sql);
                         break;
                     case 0:
                         Console.WriteLine("Saindo...");
@@ -44,6 +51,26 @@ namespace View
                 Console.ReadLine();
             }
         }
+
+
+        static void GenerateCsv(IDatabaseRepository repository)
+        {
+            var list = new ReadController(repository).LoadData();
+            Console.WriteLine(new FileGeneratorController().GenerateCsv(list));
+        }
+
+        static void GenerateJson(IDatabaseRepository repository)
+        {
+            var list = new ReadController(repository).LoadData();
+            Console.WriteLine(new FileGeneratorController().GenerateJson(list));
+        }
+
+        static void GenerateXml(IDatabaseRepository repository)
+        {
+            var list = new ReadController(repository).LoadData();
+            Console.WriteLine(new FileGeneratorController().GenerateXml(list));
+        }
+
 
         static int ChooseRecordType()
         {
@@ -59,14 +86,14 @@ namespace View
             return ReadInt();
         }
 
-
         static int ChooseDatabase()
         {
             Console.Clear();
             Console.WriteLine("=====|Gerar relatorios|=====");
-            Console.WriteLine("1- Carregar os dados do JSON");
-            Console.WriteLine("2- Carregar os dados do SQL SERVER");
+            Console.WriteLine("1- Gerar relatorios atraves do Mongo");
+            Console.WriteLine("2- Gerar relatorios atraves do SQL SERVER");
             Console.WriteLine("0- Sair");
+            Console.WriteLine(@"OBS: Após a inserção, os dados gerados podem ser encontrados em: 'C:\Radar'");
             Console.WriteLine("======================================");
             Console.Write("R: ");
 

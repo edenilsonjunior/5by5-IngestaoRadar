@@ -3,18 +3,16 @@ using Repositories;
 
 namespace Services
 {
-    public class PersistService
+    public class ReadService
     {
-        private PersistRepository _repository;
+        private ReadRepository _repository;
 
-        public PersistService()
+        public ReadService()
         {
             _repository = new();
         }
 
         public List<Radar> LoadData() => _repository.LoadData();
-
-        public bool Insert(List<Radar> list) => _repository.Insert(list);
 
     }
 }
