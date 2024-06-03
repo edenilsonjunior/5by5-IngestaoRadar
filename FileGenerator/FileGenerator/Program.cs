@@ -1,10 +1,8 @@
-﻿namespace FileGenerator
+﻿using Models;
+using Controllers;
+using Repositories;
+
+namespace FileGenerator
 {
-    internal class Program
-    {
-        static void Main(string[] args)
-        {
-            Console.WriteLine("Hello, World!");
-        }
-    }
+ 
 }
