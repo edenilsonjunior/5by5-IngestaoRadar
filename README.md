@@ -1,4 +1,4 @@
-# 5by5 - Ingestao dados de Radares
+# 5by5 - Ingestão dados de Radares
 
 Projeto desenvolvido individualmente como parte do treinamento do estágio
 
@@ -14,9 +14,10 @@ Projeto desenvolvido individualmente como parte do treinamento do estágio
   - Geração de relatórios do tipo: .csv, .json, .XML
   - A fonte dos dados pode ser recuperada tanto do SQL SERVER quanto do MongoDB
 
-
 ## Padrões de projeto utilizados:
 
 - Singleton: O sistema utiliza o padrão de projeto Singleton para criar um objeto de conexão com o SQL SERVER;
 - Strategy: O sistema utiliza o padrão Strategy para fazer inserir dependências no ReadController, as dependências são classes concretas que implementam a interface IDatabaseRepository.
 
+## Enunciado: 
+![image](https://github.com/edenilsonjunior/5by5-IngestaoRadar/assets/110670578/91e2ffa4-d6c1-4d04-80bd-d62f8a68f87e)
