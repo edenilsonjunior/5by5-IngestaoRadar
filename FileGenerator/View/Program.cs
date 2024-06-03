@@ -1,7 +1,5 @@
 ﻿using Controllers;
 using Repositories;
-using Models;
-using System.Collections.Generic;
 
 namespace View
 {

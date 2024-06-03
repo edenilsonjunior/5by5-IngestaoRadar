@@ -48,7 +48,7 @@ namespace View
                             {
                                 Console.WriteLine("Inserindo os dados...");
                                 insertMongo = new PersistController().InsertData(list);
-                                Console.WriteLine(insertMongo ? "Dados inseridos no bancos!" : "Nao foi possivel inserir os dados!");
+                                Console.WriteLine(insertMongo ? "Dados inseridos no banco!" : "Nao foi possivel inserir os dados!");
                             }
                         }
                         break;
